@@ -1,0 +1,109 @@
+--- eukleides-1.5.0-orig/Makefile	2010-01-24 16:43:18.203053286 +0100
++++ eukleides-1.5.0/Makefile	2010-01-24 16:47:38.159693336 +0100
+@@ -45,12 +45,13 @@
+ 
+ install_scr:
+ 	@echo "Installing scripts"
+-	@install scripts/* $(BIN_DIR)
++	@install -d $(DESTDIR)/$(BINDIR)
++	@install scripts/* $(DESTDIR)/$(BIN_DIR)
+ 
+ install_tex:
+ 	@echo "Installing TeX files"
+-	@install -d $(TEX_DIR)
+-	@install -m 0644 tex/* $(TEX_DIR)
++	@install -d $(DESTDIR)/$(TEX_DIR)
++	@install -m 0644 tex/* $(DESTDIR)/$(TEX_DIR)
+ 	@mktexlsr 2> /dev/null
+ 
+ install_loc:
+--- eukleides-1.5.0-orig/po/Makefile	2010-01-24 16:43:18.270135822 +0100
++++ eukleides-1.5.0/po/Makefile	2010-01-24 16:49:18.433017527 +0100
+@@ -15,8 +15,8 @@
+ 
+ $(LOCALES): $(MO_FILES)
+ 	@dir=$(MO_DIR)/$@/LC_MESSAGES && \
+-	install -d $$dir && \
+-	install -m 0644 $@.mo $$dir/eukleides.mo
++	install -d $(DESTDIR)/$$dir && \
++	install -m 0644 $@.mo $(DESTDIR)/$$dir/eukleides.mo
+ 
+ PDF_FILES := $(addsuffix .pdf, $(LOCALES))
+ TEX_FILES := $(addsuffix .tex, $(LOCALES))
+@@ -33,8 +33,8 @@
+ 	@pdflatex -interaction=nonstopmode $< > /dev/null
+ 
+ install_doc: $(PDF_FILES)
+-	@install -d $(DOC_DIR)
+-	@install -m 0644 $^ $(DOC_DIR)
++	@install -d $(DESTDIR)/$(DOC_DIR)
++	@install -m 0644 $^ $(DESTDIR)/$(DOC_DIR)
+ 
+ uninstall:
+ 	@for f in $(LOCALES); \
+--- eukleides-1.5.0-orig/man/Makefile	2010-01-24 16:43:18.203053286 +0100
++++ eukleides-1.5.0/man/Makefile	2010-01-24 16:50:19.103011427 +0100
+@@ -11,7 +11,8 @@
+ 	@gzip -c $< > $@
+ 
+ install: $(MAN_PAGES)
+-	@install -m 0644 $^ $(MAN_DIR)
++	@install -d $(DESTDIR)/$(MAN_DIR)
++	@install -m 0644 $^ $(DESTDIR)/$(MAN_DIR)
+ 
+ uninstall:
+ 	@$(RM) $(addprefix $(MAN_DIR)/, $(MAN_PAGES))
+--- eukleides-1.5.0-orig/build/Makefile	2010-01-24 16:43:18.203053286 +0100
++++ eukleides-1.5.0/build/Makefile	2010-01-24 17:03:47.256272429 +0100
+@@ -51,8 +51,9 @@
+ endif
+ 
+ install: $(BINARY)
++	install -d $(DESTDIR)/$(BIN_DIR)
+ 	@echo "Installing $<"
+-	@install -s $< $(BIN_DIR)
++	install -s $< $(DESTDIR)/$(BIN_DIR)
+ 
+ uninstall:
+ 	@$(RM) $(addprefix $(BIN_DIR)/,$(BINARIES))
+--- eukleides-1.5.0-orig/doc/Makefile	2010-01-24 16:43:18.273053542 +0100
++++ eukleides-1.5.0/doc/Makefile	2010-01-24 18:57:03.112250651 +0100
+@@ -49,13 +49,14 @@
+ 
+ install_info: eukleides.info.gz
+ 	@echo "    Installing info pages"
+-	@ginstall-info $< $(INFO_DIR)/dir
+-	@install -m 0644 $< $(INFO_DIR)
++	@install -d $(DESTDIR)/$(INFO_DIR)
++	@ginstall-info $< $(DESTDIR)/$(INFO_DIR)/dir
++	@install -m 0644 $< $(DESTDIR)/$(INFO_DIR)
+ 
+ install_pdf: pdf
+ 	@echo "    Installing manual in PDF"
+-	@install -d $(DOC_DIR)
+-	@install -m 0644 eukleides.pdf $(DOC_DIR)
++	@install -d $(DESTDIR)/$(DOC_DIR)
++	@install -m 0644 eukleides.pdf $(DESTDIR)/$(DOC_DIR)
+ 
+ ifeq ($(HTML),split)
+ install_html: install_split
+@@ -65,14 +66,14 @@
+ 
+ install_split: html
+ 	@echo "    Installing manual in HTML format"
+-	@install -d $(DOC_DIR)
+-	@install -d $(DOC_DIR)/manual
+-	@install -m 0644 manual/* $(DOC_DIR)/manual
++	@install -d $(DESTDIR)/$(DOC_DIR)
++	@install -d $(DESTDIR)/$(DOC_DIR)/manual
++	@install -m 0644 manual/* $(DESTDIR)/$(DOC_DIR)/manual
+ 
+ install_nosplit: html
+ 	@echo "    Installing manual in HTML format"
+-	@install -d $(DOC_DIR)
+-	@install -m 0644 eukleides.html $(DOC_DIR)
++	@install -d $(DESTDIR)/$(DOC_DIR)
++	@install -m 0644 eukleides.html $(DESTDIR)/$(DOC_DIR)
+ 
+ uninstall:
+ 	@$(RM) -r $(DOC_DIR)

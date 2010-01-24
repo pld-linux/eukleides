@@ -1,0 +1,22 @@
+--- eukleides-1.5.0-orig/Config	2010-01-24 16:43:18.200135852 +0100
++++ eukleides-1.5.0/Config	2010-01-24 16:43:47.773062598 +0100
+@@ -2,7 +2,7 @@
+ # Copyright (c) Christian Obrecht 2004-2010
+ 
+ # Installation prefix
+-PREFIX=/usr/local
++PREFIX=/usr
+ 
+ BINARIES = eukleides euktopst
+ 
+@@ -26,8 +26,8 @@
+ BIN_DIR = $(PREFIX)/bin
+ SHARE_DIR = $(PREFIX)/share
+ MO_DIR = $(SHARE_DIR)/locale
+-DOC_DIR = $(SHARE_DIR)/doc/eukleides
++DOC_DIR = $(SHARE_DIR)/doc/eukleides-1.5.0
+ MAN_DIR = $(SHARE_DIR)/man/man1
+ INFO_DIR = $(SHARE_DIR)/info
+-TEX_DIR = $(SHARE_DIR)/texmf/tex/latex/eukleides
++TEX_DIR = $(SHARE_DIR)/texmf-dist/tex/latex/eukleides
+ 
