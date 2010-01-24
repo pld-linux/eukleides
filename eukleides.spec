@@ -14,8 +14,10 @@ Patch1:		%{name}-makefile-destdir.patch
 URL:		http://www.eukleides.org/
 BuildRequires:	/usr/bin/pdflatex
 BuildRequires:	bison
+BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	perl
+BuildRequires:	readline-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
