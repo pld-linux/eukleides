@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README doc/*.pdf doc/manual
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*.1*
-%{_infodir}/%{name}.info.gz
+%{_infodir}/%{name}.info*
 
 %files -n texlive-latex-eukleides
 %defattr(644,root,root,755)
