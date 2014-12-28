@@ -15,7 +15,7 @@ URL:		http://www.eukleides.org/
 BuildRequires:	/usr/bin/pdflatex
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	perl
 BuildRequires:	readline-devel
 BuildRequires:	sed >= 4.0
