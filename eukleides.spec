@@ -40,8 +40,8 @@ Eukleides LaTeX style.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 %{__sed} -i "s,ginstall-info,install-info,g" doc/Makefile
 
 %build
